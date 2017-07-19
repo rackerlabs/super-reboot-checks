@@ -6,7 +6,7 @@ class Facts:
         self.build(datasources)
 
     def set(self, fact_name, value):
-        log.debug("FACTS: setting name %s to %s" % (fact_name, value))
+        #log.debug("FACTS: setting name %s to %s" % (fact_name, value))
         if not self.get(fact_name):
             setattr(self, fact_name, value)
         else:

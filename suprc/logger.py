@@ -5,10 +5,12 @@ from colours import colours
 PERROR_LEVEL_NUM = 45
 PWARNING_LEVEL_NUM = 35
 PINFO_LEVEL_NUM = 25
+PDEBUG_LEVEL_NUM = 15
 
-PERROR_FMT = colours.FAIL + '[ ERROR ]: %(message)s' + colours.ENDC
-PWARNING_FMT = colours.WARNING + '[ WARNING ]: %(message)s' + colours.ENDC
+PERROR_FMT = colours.FAIL + '[ FAIL ]: %(message)s' + colours.ENDC
+PWARNING_FMT = colours.WARNING + '[ WARN ]: %(message)s' + colours.ENDC
 PINFO_FMT = colours.INFO + '[ INFO ]: %(message)s' + colours.ENDC
+PDEBUG_FMT = colours.OKBLUE + '[ DEBUG ]: %(message)s' + colours.ENDC
 STD_FMT = '%(message)s'
 DEBUG_FMT = '%(levelname)7s: %(message)s'
 
@@ -28,6 +30,8 @@ class MyFormatter(logging.Formatter):
             self._fmt = PWARNING_FMT
         elif record.levelno == PINFO_LEVEL_NUM:
             self._fmt = PINFO_FMT
+        elif record.levelno == PDEBUG_LEVEL_NUM:
+            self._fmt = PDEBUG_FMT
         elif record.levelno >= logging.WARNING:
             self._fmt = STD_FMT
 
@@ -46,10 +50,12 @@ def init_logging(verbosity):
     logging.addLevelName(PERROR_LEVEL_NUM, "PERROR")
     logging.addLevelName(PWARNING_LEVEL_NUM, "PWARNING")
     logging.addLevelName(PINFO_LEVEL_NUM, "PINFO")
+    logging.addLevelName(PDEBUG_LEVEL_NUM, "PDEBUG")
 
     logging.Logger.pError = _perror
     logging.Logger.pWarning = _pwarning
     logging.Logger.pInfo = _pinfo
+    logging.Logger.pDebug = _pdebug
 
     formatter = MyFormatter()
 
@@ -70,3 +76,8 @@ def _pwarning(self, message, *args, **kwargs):
 def _pinfo(self, message, *args, **kwargs):
     if self.isEnabledFor(PINFO_LEVEL_NUM):
         self._log(PINFO_LEVEL_NUM, message, args, **kwargs)
+
+
+def _pdebug(self, message, *args, **kwargs):
+    if self.isEnabledFor(PDEBUG_LEVEL_NUM):
+        self._log(PDEBUG_LEVEL_NUM, message, args, **kwargs)

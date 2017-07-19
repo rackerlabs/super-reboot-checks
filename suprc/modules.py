@@ -109,10 +109,7 @@ def load_modules(mod_type):
     modules = []
     module_files = get_files(module_dirs)
 
-    if sys.version_info >= (2, 7):
-        modules = get_modules_27(module_files, mod_type)
-    else:
-        log.critical("Super Reboot Checks is not supported on python != 2.7")
+    modules = get_modules_27(module_files, mod_type)
 
     return modules
 

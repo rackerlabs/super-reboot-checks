@@ -13,8 +13,7 @@ PLUGIN_INFO = {
 
 
 def gather_processes(facts):
-    #processes = run_command(['ps', '-eo', 'cmd'])
-    processes = ['top', 'bash', 'kthreadd']
+    processes = run_command(['ps', '-eo', 'cmd'])
     return processes
 
 

@@ -64,7 +64,7 @@ def order_dependencies(datasources):
                     provides.get(string).datasource.PLUGIN_INFO['name'],
                     node.datasource.PLUGIN_INFO['name']))
                 return {}
-        return this_datasource_provides 
+        return this_datasource_provides
 
     nodes = []
     provides = {}

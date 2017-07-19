@@ -1,7 +1,8 @@
-""" 
+"""
 Apache configuration check
 """
 
+from helper import run_command
 from logger import log
 
 
@@ -15,7 +16,9 @@ PLUGIN_INFO = {
 }
 
 def _run(facts):
-    print "Ran the apache module"
-    print "First item in ps output is: " 
-    print facts.processes[0]
-    log.debug("Testing Apache")
+    log.pDebug("Running Apache plugin")
+
+    if 'httpd' in facts.processes:
+        run_command(['httpd', '-S'])
+    else:
+        log.pDebug("Apache not in running processes list")
