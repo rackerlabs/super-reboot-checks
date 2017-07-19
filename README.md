@@ -2,7 +2,7 @@
 
 ### Contributors
 
-Cameron Beere
-Sam J. Sharpe
-Erik Ljungstrom
-Piers Cornwell
+* Cameron Beere
+* Sam J. Sharpe
+* Erik Ljungstrom
+* Piers Cornwell
